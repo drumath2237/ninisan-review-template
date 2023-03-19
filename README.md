@@ -1,5 +1,8 @@
 # ninisan Re:VIEW Template
 
+![re:view](https://img.shields.io/badge/Re%3AVIEW-5.5-orange)
+[![Build Book](https://github.com/drumath2237/ninisan-review-template/actions/workflows/build.yml/badge.svg)](https://github.com/drumath2237/ninisan-review-template/actions/workflows/build.yml)
+
 ## About
 
 [にー兄さん](https://twitter.com/ninisan_drumath)作の Re:VIEW テンプレートです。
