@@ -41,13 +41,13 @@ Discord チャンネルへ通知するためには`DISCORD_WEBHOOK`という名�
 ## Licenses
 
 - GitHub Actions, vscode の設定ファイル, docker-compose などの設定ファイルは MIT ライセンスです。再配布などの際には MIT ライセンスの定める範囲での権利者表記などをお願いします。
-- `articles/`や`prh-rules`などのディレクトリ以下にあるファイル群の権利は MIT ライセンスにて Techbooster 様に帰属します。
 - articles/sty にあるファイルには以下のライセンスが適用されています。
   - review-jsbook.cls, review-base.sty, review-style.sty, review-custom.sty: MIT License
   - jumoline.sty: The LaTeX Project Public License
   - plistings.sty: MIT License
   - gentombow.sty: BSD License
   - jsbook.cls: BSD License
+- その他ファイル群の権利は MIT ライセンスにて Techbooster 様に帰属します。
 
 ## Author
 
