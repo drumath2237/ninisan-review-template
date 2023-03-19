@@ -9,4 +9,3 @@ articles/*.html
 articles/*.md
 articles/*.xml
 articles/*.txt
-/build.**

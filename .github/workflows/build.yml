@@ -1,4 +1,4 @@
-name: Build Re:VIEW Book
+name: Build Book
 
 on:
   push:

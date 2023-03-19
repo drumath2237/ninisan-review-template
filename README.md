@@ -1,12 +1,9 @@
-# Shoten13 ASA Book
-
-[![Build Re:VIEW Book](https://github.com/drumath2237/shoten14-deepdive-babylon-webxr-book/actions/workflows/build.yml/badge.svg)](https://github.com/drumath2237/shoten14-deepdive-babylon-webxr-book/actions/workflows/build.yml)
-[![reviewdog](https://github.com/drumath2237/shoten14-deepdive-babylon-webxr-book/actions/workflows/textlint.yml/badge.svg)](https://github.com/drumath2237/shoten14-deepdive-babylon-webxr-book/actions/workflows/textlint.yml)
+# ninisan Re:VIEW Template
 
 ## About
 
-書典 14 で頒布する技術同人誌のリポジトリ。
-Babylon.js と WebXR に関する内容になる予定。
+[にー兄さん](https://twitter.com/ninisan_drumath)作の Re:VIEW テンプレートです。
+TechBooster 様の[TechBooster/ReVIEW-Template](https://github.com/TechBooster/ReVIEW-Template)を参考に、textlint のセットアップや docker-compose 対応などをしています（本 README の最後にクレジット表記あり）。
 
 ## Environment
 
@@ -19,54 +16,36 @@ Babylon.js と WebXR に関する内容になる予定。
 
 ## Setup & Usage
 
-yarn の install の際、Ruby の Gem も一緒にインストールする設定になっているため
-Ruby 環境がないとエラーになることがあります。
-ローカルで textlint を動かすだけであれば Ruby は必要ないので、
-`package.json`の`scripts`にある`postinstall`というスクリプトを 1 行消してから`yarn install`してください。
+textlint のインストールのために、`yarn install`コマンドを実行します（執筆中のみ必要）。
+本のビルドは docker-compose によって行います。
 
-```json :package.json
-{
-  ...
-  "scripts": {
-    "global-bundler": "gem install bundler",
-    "global": "npm run global-bundler",
-    "postinstall": "bundle install",      // <=========== ここ1行消す（終わったら戻す）
-    "pdf": "grunt pdf",
-	...
-  },
-  ...
-}
-```
-
-textlint のインストールには、`yarn install`コマンドを実行します。
-
-```bash
+```sh
 # install npm dependency
 yarn install
 
-# run vscode
+# open in vscode
 code .
+
+# build a book
+docker compose up
 ```
 
-## Build
+### GitHub Actions の設定
 
-### docker-compose
+mian ブランチへの push をトリガーすると本をビルドして結果を Discord へ通知するジョブが組まれています。
+Discord チャンネルへ通知するためには`DISCORD_WEBHOOK`という名前で Webhook の URL をシークレットに登録してください。
 
-docker compose が使える環境であれば、`docker compose up`コマンドでビルド可能です。
+## Licenses
 
-### ビルドスクリプト
+- GitHub Actions, vscode の設定ファイル, docker-compose などの設定ファイルは MIT ライセンスです。再配布などの際には MIT ライセンスの定める範囲での権利者表記などをお願いします。
+- `articles/`や`prh-rules`などのディレクトリ以下にあるファイル群の権利は MIT ライセンスにて Techbooster 様に帰属します。
+- articles/sty にあるファイルには以下のライセンスが適用されています。
+  - review-jsbook.cls, review-base.sty, review-style.sty, review-custom.sty: MIT License
+  - jumoline.sty: The LaTeX Project Public License
+  - plistings.sty: MIT License
+  - gentombow.sty: BSD License
+  - jsbook.cls: BSD License
 
-docker compose が使えない場合、docker を用いてビルドします。
+## Author
 
-`./build.**`という形式のファイルは gitignore に設定しています。
-Docker の起動スクリプトなどに使ってください。
-
-下記は Windows バッチファイルの例です。
-
-```bat
-@echo off
-@rem change mount directory name
-@rem ex) D:\shoten12-webar-babylon-book
-docker run -it --rm -v /d/shoten12-webar-babylon-book/:/book vvakame/review:5.5 /bin/bash -ci "cd /book/articles && review-pdfmaker config.yml"
-```
-
+[にー兄さん](https://twitter.com/ninisan_drumath)
