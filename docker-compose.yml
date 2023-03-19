@@ -1,0 +1,8 @@
+version: '3'
+services:
+  book:
+    image: vvakame/review:5.5
+    working_dir: /book
+    volumes:
+      - .:/book
+    command: /bin/bash -ci "cd /book/articles && review-pdfmaker config.yml"

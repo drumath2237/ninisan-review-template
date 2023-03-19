@@ -1,0 +1,17 @@
+{
+  "filters": {
+    "allowlist": {
+      "allow": []
+    },
+    "comments": true
+  },
+  "rules": {
+    "preset-ja-technical-writing": {
+      "no-exclamation-question-mark": false
+    },
+    "prh": {
+      "rulePaths": ["./prh-rules/media/techbooster.yml"]
+    }
+  },
+  "plugins": ["review"]
+}

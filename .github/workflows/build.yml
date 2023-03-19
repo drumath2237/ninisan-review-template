@@ -1,0 +1,35 @@
+name: Build Re:VIEW Book
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name:
+    runs-on: ubuntu-20.04
+    steps:
+      # uses v2 Stable version
+      # https://github.com/actions/checkout
+      - name: checkout source
+        uses: actions/checkout@v3
+
+      # Build Artifacts
+      - name: Build a book
+        run: docker compose up
+
+      # Upload Distribution file
+      - name: Upload distribution file to github artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Output documents
+          path: ./articles/*.pdf
+
+      - name: Notify discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+
