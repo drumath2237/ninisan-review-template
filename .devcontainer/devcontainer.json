@@ -1,0 +1,15 @@
+{
+	"dockerComposeFile": ["../docker-copmpose.yml", "docker-compose.yml"],
+	"postCreateCommand": [
+		"yarn",
+		"i"
+	],
+	"remoteUser": "root",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.wordWrap": "on"
+			}
+		}
+	}
+}
