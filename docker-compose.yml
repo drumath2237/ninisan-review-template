@@ -1,8 +1,9 @@
 version: '3'
 services:
   book:
-    image: vvakame/review:5.7
+    image: vvakame/review:5.8
     working_dir: /book
     volumes:
       - .:/book
     command: /bin/bash -ci "cd /book/articles && review-pdfmaker config.yml"
+    # command: /bin/bash -ci "cd /book/articles && rake pdf --trace"
