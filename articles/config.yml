@@ -431,4 +431,3 @@ pdfmaker:
 #
 webmaker:
   stylesheet: ["style.css", "style-web.css"]
-

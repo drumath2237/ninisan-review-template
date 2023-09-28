@@ -8,12 +8,12 @@
 
 === 想定する開発環境
 
- * Windows 10 Home
+ * Windows 11 Home
  * Visual Studio Code
- * Re:VIEW 5.5
- * Node.js 16.x
+ * Re:VIEW 5.8
+ * Node.js 18.x
  * textlint
- * Docker 
+ * Docker and docker-compose
 
 === 章の構成
 
