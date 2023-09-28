@@ -6,3 +6,7 @@ services:
     volumes:
       - .:/book
     command: /bin/bash -ci "cd /book/articles && rake pdf"
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp:unconfined
