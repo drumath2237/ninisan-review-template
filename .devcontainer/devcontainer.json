@@ -1,15 +1,14 @@
 {
-	"dockerComposeFile": ["../docker-copmpose.yml", "docker-compose.yml"],
-	"postCreateCommand": [
-		"yarn",
-		"i"
-	],
-	"remoteUser": "root",
-	"customizations": {
-		"vscode": {
-			"settings": {
-				"editor.wordWrap": "on"
-			}
-		}
-	}
+  //   "dockerComposeFile": ["../docker-copmpose.yml", "docker-compose.yml"],
+  "name": "book",
+  "image": "vvakame/review:5.8",
+  "postCreateCommand": ["yarn", "install"],
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.wordWrap": "on"
+      }
+    }
+  }
 }

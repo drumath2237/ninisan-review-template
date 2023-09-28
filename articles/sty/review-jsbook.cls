@@ -1,5 +1,5 @@
 %#!ptex2pdf -l -u -ot '-synctex=1' test-rejsbk
-% Copyright (c) 2018-2020 Munehiro Yamamoto, Kenshi Muto.
+% Copyright (c) 2018-2021 Munehiro Yamamoto, Kenshi Muto.
 %
 % Permission is hereby granted, free of charge, to any person obtaining a copy
 % of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,10 @@
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 % THE SOFTWARE.
 
+\IfFileExists{plautopatch.sty}{\RequirePackage{plautopatch}}{}
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{review-jsbook}
-  [2020/08/16 v5.0  Re:VIEW pLaTeX class modified for jsbook.cls]
+  [2021/08/23 v5.3 Re:VIEW pLaTeX class modified for jsbook.cls]
 
 \def\recls@error{\ClassError{review-jsbook}}
 \def\recls@warning{\ClassWarning{review-jsbook}}
@@ -38,12 +39,18 @@
 \RequirePackage{fix-cm}%%\RequirePackage{fix-cm,exscale}
 \IfFileExists{latexrelease.sty}{}{\RequirePackage{fixltx2e}}
 
+%% amsmath: override \@ifstar with \new@ifnextchar in amsgen.sty
+\let\ltx@ifstar\@ifstar%%as \@ifstar of LaTeX kernel
+
 %% graphicx: added nosetpagesize
 \IfFileExists{platexrelease.sty}{%% is bundled in TL16 or higher release version
 \PassOptionsToPackage{nosetpagesize}{graphicx}%%for TL16 or higher version
 }{}
 
-\RequirePackage{xkeyval,everypage}%%,etoolbox
+\RequirePackage{xkeyval}%%,etoolbox
+\IfFileExists{everypage-1x.sty}{% is bundled in TL20 or higher
+\RequirePackage{everypage-1x}
+}{\RequirePackage{everypage}}
 
 %% useful helpers
 \newcommand\recls@get@p@[2]{%
@@ -148,7 +155,7 @@
   \xdef#1{\ifx\recls@hiddenfolio\@empty tombo,\fi#1}}
 
 %% \recls@set@hiddenfolio{<preset>}
-%% <preset>: default, marusho-ink (丸正インキ), nikko-pc (日光企画), 
+%% <preset>: default, marusho-ink (丸正インキ), nikko-pc (日光企画),
 %%    shippo (ねこのしっぽ)
 \def\recls@set@hiddenfolio#1{\ifx#1\@empty\else
   \@ifundefined{@makehiddenfolio@#1}{%
@@ -283,6 +290,9 @@
 % \typeout{!!! magscale: \jsc@magscale}
 % \typeout{!!! mag: \the\mag}%%=> 1000 -> OK
 
+%% compatibility for jlreq.cls
+\let\if@tate\iftdir
+
 %% override papersize with custom papersize
 \ifx\recls@paperwidth\@empty\else\ifx\recls@paperheight\@empty\else
   \setlength{\paperwidth}{\recls@paperwidth}
@@ -388,7 +398,21 @@
   hidelinks,
   setpagesize=false,
 ]{hyperref}
-\RequirePackage[dvipdfmx]{pxjahyper}
+\RequirePackage{pxjahyper}
+
+%% better line breaks for long urls
+\AtBeginDocument{%
+  %% modified url.sty
+  \def\UrlBreaks{%
+    \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9%
+    \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+    \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
+    \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n%
+    \do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z%
+    %%
+    \do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]%
+    \do\)\do\,\do\?\do\&\do\'\do+\do\=\do\#}%
+}
 
 %% more useful macros
 %% ----------
@@ -397,12 +421,29 @@
 \let\grnchry@gutter\recls@gutter
 \newcommand*\includefullpagegraphics{%
   \clearpage
-  \@ifstar
+  \ltx@ifstar
     {\@includefullpagegraphics}%
     {\thispagestyle{empty}\@includefullpagegraphics}
 }
 
 \newcommand*\@includefullpagegraphics[2][]{%
+  \if@tate
+    \vbox to \textheight{%
+      \ifodd\c@page
+        \vskip-\dimexpr\evensidemargin - \topskip + 1in\relax
+      \else
+        \vskip-\dimexpr\oddsidemargin - \topskip + 1in\relax
+      \fi
+      \vbox to \paperwidth{\vss
+        \hbox to \textwidth{%
+          \hskip-\grnchry@head\relax
+          \hbox to \paperheight{\hss
+            \rotatebox{90}{\includegraphics[#1]{#2}}%
+          \hss}%
+        \hss}%
+      \vss}%
+    \vss}%
+  \else
     \vbox to \textheight{%
       \vskip-\grnchry@head
       \vbox to \paperheight{\vss
@@ -418,6 +459,7 @@
         \hss}%
       \vss}%
     \vss}%
+  \fi
   \clearpage
 }
 
@@ -491,6 +533,13 @@
 %% 表紙のノンブル
 \def\coverpagezero#1{\expandafter\@coverpagezero\csname c@#1\endcsname}
 \def\@coverpagezero#1{cover}
+
+%% 脚注がページをまたいで泣き別れさせない
+\interfootnotelinepenalty\@M
+
+%% 代替定義
+\def\reviewleftcurlybrace{\{}
+\def\reviewrightcurlybrace{\}}
 
 \listfiles
 \endinput

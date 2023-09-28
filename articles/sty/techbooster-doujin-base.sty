@@ -52,7 +52,8 @@
 \renewcommand{\captionsize}{\fontsize{9}{9}\selectfont}
 \newlength{\captionnumwidth}
 \setlength{\captionnumwidth}{6zw}
-%\newlength{\captionwidth}
+
+\newlength{\captionwidth}
 \setlength{\captionwidth}{\textwidth}
 \addtolength{\captionwidth}{-\captionnumwidth}
 \def\captionhead{\sffamily{\color{black!30!white}{▲}}}
@@ -92,7 +93,7 @@
 
 \renewcommand{\reviewsourcecaption}[1]{%
   {\def\captionhead{\sffamily{\color{black!30!white}{▼}}}
-   \medskip{\listcaption#1\relax}\vspace*{-1.3zw}}}
+   \medskip{\buildcaption{}{}{#1}\relax}\vspace*{-1.3zw}}}
 
 \renewcommand{\reviewemlistcaption}[1]{%
   {\def\captionhead{\sffamily{\color{black!30!white}{▼}}}
@@ -100,7 +101,7 @@
 
 \renewcommand{\reviewcmdcaption}[1]{%
   {\def\captionhead{\sffamily{\color{black!30!white}{▼}}}
-   \medskip{\listcaption#1\relax}\vspace*{-1.3zw}}}
+   \medskip{\buildcaption{}{}{#1}\relax}\vspace*{-1.3zw}}}
 
 \renewcommand{\reviewindepimagecaption}[1]{%
   \begin{center}#1\end{center}}
@@ -214,6 +215,18 @@
 }
 {\message{succeeded to patch: reviewcolophonpagecont2}}{\message{failed to patch: reviewcolophonpagecont2}}
   }
+\fi
+
+% 裏表紙
+\ifdefined\techbooster@coverimage
+  \ifdefined\review@coverimageoption\else%
+    \def\review@coverimageoption{}%
+  \fi
+  \ifrecls@coverfitpage%
+    \def\review@coverimageoption{width=\paperwidth,height=\paperheight}%
+  \fi
+  \def\reviewbackcovercont{%
+  \expandafter\includefullpagegraphicswithoutnmbl\expandafter[\review@coverimageoption]{\techbooster@coverimage}}%
 \fi
 
 \makeatother
