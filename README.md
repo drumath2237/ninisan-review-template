@@ -1,6 +1,6 @@
 # ninisan Re:VIEW Template
 
-![re:view](https://img.shields.io/badge/Re%3AVIEW-5.5-orange)
+![re:view](https://img.shields.io/badge/Re%3AVIEW-5.8-orange)
 [![Build Book](https://github.com/drumath2237/ninisan-review-template/actions/workflows/build.yml/badge.svg)](https://github.com/drumath2237/ninisan-review-template/actions/workflows/build.yml)
 
 ## About
@@ -11,7 +11,7 @@ TechBooster 様の[TechBooster/ReVIEW-Template](https://github.com/TechBooster/R
 ## Environment
 
 - docker / docker-compose
-- Re:VIEW 5.5
+- Re:VIEW 5.8
 - yarn
 - (Ruby 3.1)
 - VSCode
