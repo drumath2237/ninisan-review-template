@@ -8,13 +8,12 @@ on:
 
 jobs:
   build:
-    name:
     runs-on: ubuntu-22.04
     steps:
       # uses v2 Stable version
       # https://github.com/actions/checkout
       - name: checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Build Artifacts
       - name: Build a book
@@ -22,15 +21,14 @@ jobs:
 
       # Upload Distribution file
       - name: Upload distribution file to github artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Output documents
           path: ./articles/*.pdf
 
-      - name: Notify discord
-        uses: sarisia/actions-status-discord@v1
-        if: always()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          status: ${{ job.status }}
-
+      # - name: Notify discord
+      #   uses: sarisia/actions-status-discord@v1
+      #   if: always()
+      #   with:
+      #     webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      #     status: ${{ job.status }}
