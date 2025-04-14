@@ -12,10 +12,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "yarn"
+          cache: "npm"
 
       - name: Install deps
-        run: yarn --frozen-lockfile
+        run: npm i
 
       - name: textlint-github-pr-review
         uses: tsuyoshicho/action-textlint@v3
