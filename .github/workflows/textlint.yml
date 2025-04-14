@@ -4,27 +4,17 @@ on: [pull_request]
 jobs:
   textlint:
     name: runner / textlint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
+      - uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: "16.x"
+          node-version: 20
+          cache: "yarn"
 
-      - name: Cache Yarn
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Yarn
-        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install deps
         run: yarn --frozen-lockfile
 
       - name: textlint-github-pr-review
