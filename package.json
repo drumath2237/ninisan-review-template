@@ -15,7 +15,8 @@
   },
   "homepage": "https://github.com/TechBooster/ReVIEW-Template#readme",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
   "scripts": {
     "global-bundler": "gem install bundler",
@@ -27,7 +28,7 @@
     "epub": "grunt epub",
     "web": "grunt web",
     "test": "npm run html",
-    "lint": "yarn textlint ./articles/*.re"
+    "lint": "textlint ./articles/*.re"
   },
   "dependencies": {},
   "devDependencies": {
