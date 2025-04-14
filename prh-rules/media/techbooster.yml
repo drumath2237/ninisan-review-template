@@ -4,7 +4,7 @@ meta:
     - vvakame
     - mhidaka
   related: http://techbooster.org/
-  rules:   https://github.com/prh/rules
+  rules: https://github.com/prh/rules
 
 # techbooster editor lint!!
 # C89 冬コミ開始前時点で利用している版だよ！
@@ -23,290 +23,289 @@ rules:
   # 記号
   # 半角括弧を全角括弧に
   - expected: （$1）
-    pattern:  /\((.+?)\)/
+    pattern: /\((.+?)\)/
     specs:
       - from: そうですね(笑)
-        to:   そうですね（笑）
+        to: そうですね（笑）
       - from: (@<fn>{test})
-        to:   （@<fn>{test}）
+        to: （@<fn>{test}）
       - from: "(ほげ)ほげ)"
-        to:   "（ほげ）ほげ)"
+        to: "（ほげ）ほげ)"
     prh: 半角カッコの代わりに全角カッコを使うこと。文字のバランスが崩れるためです
   # TODO 英単語の前後の空白を殺す
 
   # 開き
   - expected: いえ
-    pattern:  言え
+    pattern: 言え
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: いう
-    pattern:  言う
+    pattern: 言う
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: いわ
-    pattern:  言わ
+    pattern: 言わ
     prh: 呼ぶ、で代替するか漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: さまざま
-    pattern:  様々
+    pattern: 様々
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: よい
-    pattern:  /良い(?!例)/
+    pattern: /良い(?!例)/
     prh: 良し悪しを評価する表現は"良い"、しなくていい、など評価でない表現は"よい"を使います
     specs:
       - from: 良い
-        to:   よい
+        to: よい
       - from: 良い例
-        to:   良い例
+        to: 良い例
   - expected: さらに
-    pattern:  /(変)?更に/
+    pattern: /(変)?更に/
     regexpMustEmpty: $1
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
     specs:
       - from: 変更に
-        to:   変更に
+        to: 変更に
   - expected: もつ
-    pattern:  持つ
+    pattern: 持つ
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: とおり
-    pattern:  通り
+    pattern: 通り
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。"どおり"のケースもありえます
   - expected: ひととおり
-    pattern:  /(一|ひと)通り/
+    pattern: /(一|ひと)通り/
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: すでに
-    pattern:  既に
+    pattern: 既に
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: すべて
-    pattern:  /(全て|総て)/
+    pattern: /(全て|総て)/
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: たとえば
-    pattern:  例えば
+    pattern: 例えば
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: 他の
-    pattern:  ほかの
+    pattern: ほかの
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: 分かる
-    pattern:  わかる
+    pattern: わかる
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: $1中
-    pattern:  /(その)なか/
+    pattern: /(その)なか/
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: きれい
-    pattern:  綺麗
+    pattern: 綺麗
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: こと
-    pattern:  /(記|大|仕|返|無|食|見|議|関心)?事(?!情|件|前|後|象|例|実|体|態|項|務|業|柄)/
+    pattern: /(記|大|仕|返|無|食|見|議|関心)?事(?!情|件|前|後|象|例|実|体|態|項|務|業|柄)/
     regexpMustEmpty: $1
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
     specs:
       - from: ある事
-        to:   あること
+        to: あること
       - from: 記事
-        to:   記事
+        to: 記事
       - from: 事件
-        to:   事件
+        to: 事件
       - from: 事象
-        to:   事象
+        to: 事象
       - from: 事柄
-        to:   事柄
+        to: 事柄
   - expected: $1とき
-    pattern:  /(の)時(?!点|代|々|間)/
+    pattern: /(の)時(?!点|代|々|間)/
     specs:
       - from: その時
-        to:   そのとき
+        to: そのとき
       - from: その時点
-        to:   その時点
+        to: その時点
       - from: その時代
-        to:   その時代
+        to: その時代
       - from: それまでの時間
-        to:   それまでの時間
+        to: それまでの時間
       - from: 同時
-        to:   同時
+        to: 同時
       - from: 実行時
-        to:   実行時
+        to: 実行時
       - from: 利用時
-        to:   利用時
+        to: 利用時
       - from: 開発時
-        to:   開発時
+        to: 開発時
       - from: 執筆時
-        to:   執筆時
+        to: 執筆時
       - from: 時点
-        to:   時点
+        to: 時点
       - from: 時代
-        to:   時代
+        to: 時代
       - from: 時間
-        to:   時間
+        to: 時間
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: でき$1
-    pattern:  /出来(る|て|た|ま|上が)/
+    pattern: /出来(る|て|た|ま|上が)/
     specs:
       - from: 出来上がった
-        to:   でき上がった
+        to: でき上がった
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: したがって
-    pattern:  従って
+    pattern: 従って
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: $1ように
-    pattern:  /(の)様に/
+    pattern: /(の)様に/
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: 次$1
-    pattern:  /(?:以下|下記)(の|に)/
+    pattern: /(?:以下|下記)(の|に)/
     specs:
       - from: 以下の
-        to:   次の
+        to: 次の
       - from: 以下に
-        to:   次に
+        to: 次に
       - from: 次回
-        to:   次回
+        to: 次回
       - from: 下記の
-        to:   次の
+        to: 次の
     prh: 書籍の場合は、以下ではなく次を利用します（常に下にあるとは限らないため）
   - expected: かかわらず
-    pattern:  /関わ?らず/
+    pattern: /関わ?らず/
     specs:
       - from: 関わらず
-        to:   かかわらず
+        to: かかわらず
       - from: 関らず
-        to:   かかわらず
+        to: かかわらず
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: なる
-    pattern:  成る
+    pattern: 成る
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: お勧め
-    pattern:  おすすめ
+    pattern: おすすめ
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: $1あとで
-    pattern:  /(して|した|、)後で/
+    pattern: /(して|した|、)後で/
     specs:
       - from: して後で
-        to:   してあとで
+        to: してあとで
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: あらかじめ
-    pattern:  予め
+    pattern: 予め
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: なぜ
-    pattern:  何故
+    pattern: 何故
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: ゆえに
-    pattern:  故に
+    pattern: 故に
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: うまく
-    pattern:  巧く
+    pattern: 巧く
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: もっぱら
-    pattern:  専ら
+    pattern: 専ら
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: はやる
-    pattern:  流行る
+    pattern: 流行る
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: のよう
-    pattern:  の様
+    pattern: の様
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: まったく
-    pattern:  全く
+    pattern: 全く
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: さきほど
-    pattern:  先程
+    pattern: 先程
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: あるいは
-    pattern:  或いは
+    pattern: 或いは
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: はじめて
-    pattern:  初めて
+    pattern: 初めて
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: どういうとき
-    pattern:  どういう時
+    pattern: どういう時
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: いくつか
-    pattern:  幾つか
+    pattern: 幾つか
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
   - expected: 下げ
-    pattern:  さげ
+    pattern: さげ
     prh: ひらがなで書かず、漢字で「下げ」と読みやすくなります。
   - expected: もら$1
-    pattern:  /貰(う|い)/
+    pattern: /貰(う|い)/
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
     specs:
       - from: 貰う
-        to:   もらう
+        to: もらう
       - from: 貰い
-        to:   もらい
+        to: もらい
   - expected: いったん
-    pattern:  一旦
+    pattern: 一旦
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
 
   # 通常は、ひとつ。数詞は１つ、漢数字は数えられる固有名詞を指す場合に利用
   - expected: ひとつ
-    pattern:  一つ
+    pattern: 一つ
     prh: 通常は、ひとつ。数詞は１つ、漢数字は数えられる固有名詞を指す場合に利用します
   - expected: ふたつ
-    pattern:  二つ
+    pattern: 二つ
     prh: 通常は、ふたつ。数詞は１つ、漢数字は数えられる固有名詞を指す場合に利用
   - expected: もっとも
-    pattern:  最も
+    pattern: 最も
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: ちょうど
-    pattern:  /(丁度|調度)/
+    pattern: /(丁度|調度)/
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: いずれ
-    pattern:  何れ
+    pattern: 何れ
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: ほとんど
-    pattern:  殆ど
+    pattern: 殆ど
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: 、
-    pattern:  ，
+    pattern: ，
     prh: カンマとコンマではなく句点読点を使います。
   - expected: 。
-    pattern:  ．
+    pattern: ．
     prh: カンマとコンマではなく句点読点を使います。
   - expected: すべて
-    pattern:  全て
+    pattern: 全て
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: あえて
-    pattern:  敢えて
+    pattern: 敢えて
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: いくつ
-    pattern:  幾つ
+    pattern: 幾つ
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: 使$1
-    pattern:  /つか(う|って|った)/
+    pattern: /つか(う|って|った)/
     prh: ひらがなで書かず、漢字で書くと読みやすくなります。
   - expected: あとから
-    pattern:  後から
+    pattern: 後から
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: よく
-    pattern:  良く
+    pattern: 良く
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: みつけ
-    pattern:  見つけ
+    pattern: 見つけ
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: ある
-    pattern:  有る
+    pattern: 有る
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: ない
-    pattern:  無い
+    pattern: 無い
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: わかりづらい
-    pattern:  分かり辛い
+    pattern: 分かり辛い
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: やすい
-    pattern:  易い
+    pattern: 易い
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: すべて
-    pattern:  全て
+    pattern: 全て
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: 移る
-    pattern:  うつる
+    pattern: うつる
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: 同じ
-    pattern:  おなじ
+    pattern: おなじ
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: 続け
-    pattern:  つづけ
+    pattern: つづけ
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: 選$1
-    pattern:  /えら(ぶ|んだ)/
+    pattern: /えら(ぶ|んだ)/
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
-
 
   # footnoteの末尾は読点を使わない
   # タイトル見出しの末尾は読点を使わない
@@ -324,35 +323,35 @@ rules:
 
   # 横文字
   - expected: ライブラリ
-    pattern:  ラブライブ # C87でやらかした人がいましたね？
+    pattern: ラブライブ # C87でやらかした人がいましたね？
     prh: C87でざきさんがやらかした思い出
   - expected: ユーザー
-    pattern:  /ユーザ(?!ー)/ # 末尾に長音記号がつかない「ユーザ」だけ拾う
+    pattern: /ユーザ(?!ー)/ # 末尾に長音記号がつかない「ユーザ」だけ拾う
     prh: ユーザーでもユーザでもいいんだけどユーザーで統一してる
 
   - expected: Wi-Fi
-    pattern:  WiFi
+    pattern: WiFi
   - expected: JSON
-    pattern:  Json    
+    pattern: Json
   - expected: JUnit 5
-    pattern:  JUnit5
+    pattern: JUnit5
   - expected: JUnit 4
-    pattern:  JUnit4
+    pattern: JUnit4
   - expected: 引数
-    pattern:  引き数
+    pattern: 引き数
   - expected: おおむね
-    pattern:  概ね
+    pattern: 概ね
   - expected: パラメータ
-    pattern:  パラメーター
+    pattern: パラメーター
   - expected: 仕組み
-    pattern:  しくみ
+    pattern: しくみ
   - expected: そう
-    pattern:  沿う
+    pattern: 沿う
   - expected: そって
-    pattern:  沿って
+    pattern: 沿って
   #- expected: Firebase
   #  pattern:  Firebas
   # その他
   - expected: コード補完
-    pattern:  コード保管
+    pattern: コード保管
     prh: コード補完の間違いと思われます。
