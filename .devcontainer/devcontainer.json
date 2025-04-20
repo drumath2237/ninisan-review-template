@@ -2,7 +2,10 @@
   //   "dockerComposeFile": ["../docker-copmpose.yml", "docker-compose.yml"],
   "name": "book",
   "image": "vvakame/review:5.8",
-  "postCreateCommand": ["yarn", "install"],
+  "postCreateCommand": [
+    "npm",
+    "install"
+  ],
   "remoteUser": "root",
   "customizations": {
     "vscode": {
