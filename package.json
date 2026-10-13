@@ -30,7 +30,6 @@
     "test": "npm run html",
     "lint": "textlint ./articles/*.re"
   },
-  "dependencies": {},
   "devDependencies": {
     "grunt": "^1.1.0",
     "grunt-cli": "^1.2.0",
@@ -38,7 +37,7 @@
     "grunt-shell": "^3.0.1",
     "js-yaml": "^3.13.1",
     "load-grunt-tasks": "^4.0.0",
-    "textlint": "^13.3.1",
+    "textlint": "^15.8.0",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-plugin-review": "^0.4.1",
