@@ -19,12 +19,12 @@ TechBooster 様の[TechBooster/ReVIEW-Template](https://github.com/TechBooster/R
 
 ## Setup & Usage
 
-textlint のインストールのために、`yarn install`コマンドを実行します（執筆中のみ必要）。
+textlint のインストールのために、`npm install`コマンドを実行します（執筆中のみ必要）。
 本のビルドは docker-compose によって行います。
 
 ```sh
 # install npm dependency
-yarn install
+npm install
 
 # open in vscode
 code .
