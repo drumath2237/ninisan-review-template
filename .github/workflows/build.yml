@@ -8,12 +8,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      # uses v2 Stable version
       # https://github.com/actions/checkout
       - name: checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
 
       # Build Artifacts
       - name: Build a book
@@ -21,13 +20,15 @@ jobs:
 
       # Upload Distribution file
       - name: Upload distribution file to github artifacts
-        uses: actions/upload-artifact@v4
+        # https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 #v7.0.2
         with:
           name: Output documents
           path: ./articles/*.pdf
 
       # - name: Notify discord
-      #   uses: sarisia/actions-status-discord@v1
+      #   # https://github.com/sarisia/actions-status-discord
+      #   uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708 #v1.16.0
       #   if: always()
       #   with:
       #     webhook: ${{ secrets.DISCORD_WEBHOOK }}
