@@ -1,7 +1,7 @@
-version: '3'
+version: "3"
 services:
   book:
-    image: vvakame/review:5.8
+    image: vvakame/review:5.8@sha256:ff78d64f079dab7b9a3e9b62ca9ad2c2abc30e593b7cf4bb5a32184f1f7d179c
     working_dir: /book
     volumes:
       - .:/book
